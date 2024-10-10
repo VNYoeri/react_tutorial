@@ -1,5 +1,6 @@
 import 'bulma/css/bulma.css';
 import React from "react";
+import {useContext} from "react";
 
 interface ProfileCard {
     title?: string

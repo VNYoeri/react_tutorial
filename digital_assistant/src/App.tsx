@@ -28,6 +28,14 @@ function App() {
                     </div>
                 </section>
             </div>
+
+            {/*TODO: find a way to use this, while handling async loading of the image ... */}
+            {/*<ProfileCards cards={[*/}
+            {/*    {title: "Alexa", handle: "@alexa99", image: {AlexaImage}, description: "Alexa was created by Amazon and is ment for shopping"},*/}
+            {/*    {title: "Cortana", handle: "@cortana32", image: {CortanaImage}, description: "Cortana was created by Microsoft"},*/}
+            {/*    {title: "Siri", handle: "@siri01", image: {SiriImage}, description: "Siri was created by Apple"}*/}
+
+            {/*]}/>*/}
         </div>
     );
 }
