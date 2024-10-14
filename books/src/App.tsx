@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function App() {
-  return (
-    <div>
-      App
-    </div>
-  );
+    const [books, setBooks] = useState([]);
+
+    return (
+        <div>
+            App
+        </div>
+    );
 }
 
 export default App;
