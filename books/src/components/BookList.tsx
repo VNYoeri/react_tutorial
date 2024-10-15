@@ -1,6 +1,5 @@
 import {Book} from "../domain/Book";
 import BookShow from "./BookShow";
-import {useState} from "react";
 
 interface BookListProps {
     books: Book[],
