@@ -7,17 +7,19 @@ import BookCreate from "./components/BookCreate";
 function App() {
     const [books, setBooks] = useState((): Book[] => []);
 
-    const createBook = (book: Book ) => {
+    const createBook = (book: Book) => {
         setBooks([...books, book])
     }
 
-    const deleteById = (id: number) => {
-        setBooks(books.filter((book) => {return book.id !== id}))
+    const deleteById = (id?: number) => {
+        setBooks(books.filter((book) => {
+            return book.id !== id
+        }))
     }
 
     const editById = (updatedBook: Book) => {
         setBooks(books.map((book) => {
-            if(book.id === updatedBook.id) {
+            if (book.id === updatedBook.id) {
                 return updatedBook;
             }
             return book;

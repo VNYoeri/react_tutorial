@@ -4,7 +4,7 @@ import BookEdit from "./BookEdit";
 
 interface BookShowProps {
     book: Book,
-    onDelete: ((id: number) => void)
+    onDelete: ((id?: number) => void)
     onEdit: (book: Book) => void
 }
 
@@ -13,7 +13,7 @@ function BookShow({book, onDelete, onEdit}: BookShowProps) {
 
 
     const deleteBook = () => {
-        onDelete(book.id)
+        onDelete(book?.id)
     }
 
     const updateBook = (book: Book) => {

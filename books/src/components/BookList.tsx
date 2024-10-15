@@ -3,7 +3,7 @@ import BookShow from "./BookShow";
 
 interface BookListProps {
     books: Book[],
-    onDelete: (id: number) => void,
+    onDelete: (id ?: number) => void,
     onEdit: (book: Book) => void
 }
 
