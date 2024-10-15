@@ -1,0 +1,27 @@
+### CREATE BOOK
+POST http://localhost:3001/books
+Content-Type: application/json
+
+{
+  "title": "React Course",
+  "author": "Some Dude"
+}
+
+### UPDATE BOOK
+
+PUT http://localhost:3001/books/1
+Content-Type: application/json
+
+
+{
+  "title": "Modern React with Redux",
+  "author": "Stephen"
+}
+
+### GET ALL BOOKS
+GET http://localhost:3001/books
+Content-Type: application/json
+
+### DELETE BY ID
+DELETE http://localhost:3001/books/1
+###
