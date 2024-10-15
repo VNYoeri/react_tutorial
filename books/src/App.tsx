@@ -27,19 +27,30 @@ function App() {
         setBooks([...books, response.data])
     }
 
-    const deleteById = (id?: number) => {
+    const deleteById = async (id?: number) => {
+
+        await axios.delete(`http://localhost:3001/books/${id}`)
+
         setBooks(books.filter((book) => {
             return book.id !== id
         }))
     }
 
-    const editById = (updatedBook: Book) => {
-        setBooks(books.map((book) => {
-            if (book.id === updatedBook.id) {
-                return updatedBook;
+    const editById = async (updatedBook: Book) => {
+
+        const response = await axios.put(`http://localhost:3001/books/${updatedBook.id}`,
+            {...updatedBook}
+        )
+
+        const updatedBooks = books.map((book) => {
+            if (book.id === response.data.id) {
+                return {...book, ...response.data};
             }
+
             return book;
-        }))
+        });
+
+        setBooks(updatedBooks)
     }
 
     return (
