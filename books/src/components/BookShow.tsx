@@ -37,9 +37,8 @@ function BookShow({book, onDelete, onEdit}: BookShowProps) {
                 <button className='edit' onClick={editBook}/>
             </div>
             <img src={`https://picsum.photos/seed/${book.id}/300/200`} alt={book.title}/>
-            <label>{content}</label>
-            <br/>
-            <label>Author: {book?.author}</label>
+            {content}
+            Author: {book?.author}
         </div>
     )
 }

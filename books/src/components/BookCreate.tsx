@@ -12,8 +12,7 @@ function BookCreate({onCreate}: BookCreateProps) {
     const addBook = (event: FormEvent) => {
         event.preventDefault();
         console.log('received event', event);
-        const id = Math.round(Math.random() * 1230);
-        onCreate({ id, title, author });
+        onCreate({ title, author });
         setTitle('');
         setAuthor('');
     }
@@ -32,8 +31,8 @@ function BookCreate({onCreate}: BookCreateProps) {
         <div className='book-create'>
             <h3>Create a new book</h3>
             <form onSubmit={addBook}>
-                <input className='input' type="text" value={title} placeholder="Title goes here" onChange={updateTitle}/>
-                <input className='input' type="text" value={author} placeholder="Author goes here" onChange={updateAuthor}/>
+                <input id='title' className='input' type="text" value={title} placeholder="Title goes here" onChange={updateTitle}/>
+                <input id='author' className='input' type="text" value={author} placeholder="Author goes here" onChange={updateAuthor}/>
                 <button className='button' type='submit'>Create book</button>
             </form>
         </div>

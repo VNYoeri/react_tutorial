@@ -1,14 +1,30 @@
 import './index.css'
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Book} from "./domain/Book";
 import BookList from "./components/BookList";
 import BookCreate from "./components/BookCreate";
+import axios from "axios";
+
 
 function App() {
-    const [books, setBooks] = useState((): Book[] => []);
+    const [books, setBooks] = useState((): Book[] => [])
 
-    const createBook = (book: Book) => {
-        setBooks([...books, book])
+    const fetchBooks = async () => {
+        const response = await axios.get('http://localhost:3001/books')
+
+        return response
+    }
+
+    useEffect(() => {
+        fetchBooks().then(r => setBooks(r.data));
+    }, [])
+
+    const createBook = async (book: Book) => {
+        const response = await axios.post('http://localhost:3001/books', {...book}).then(b => {
+            return b
+        })
+
+        setBooks([...books, response.data])
     }
 
     const deleteById = (id?: number) => {
