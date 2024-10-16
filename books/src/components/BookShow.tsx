@@ -32,7 +32,7 @@ function BookShow({book}: BookShowProps) {
             </div>
             <img src={`https://picsum.photos/seed/${book.id}/300/200`} alt={book.title}/>
             {content}
-            Author: {book?.author}
+            <i>{book?.author}</i>
         </div>
     )
 }
