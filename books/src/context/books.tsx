@@ -1,25 +1,21 @@
-import {createContext, ReactNode, useEffect, useState} from "react";
+import {createContext, ReactNode, useState} from "react";
 import {Book} from "../domain/Book";
 import axios from "axios";
 
 const BooksContext = createContext<BooksContextType>({
     books: [],
-    onDelete(): void {
-    },
-    onEdit(): void {
-    },
-    onCreate(): void {
-    },
-    fetchBooks(): void {
-    }
+    create(): void {},
+    edit(): void {},
+    fetch(): void {},
+    remove(): void {}
 })
 
 interface BooksContextType {
     books: Book[],
-    onDelete: (id: number) => void,
-    onEdit: (book: Book) => void,
-    onCreate: (book: Book) => void,
-    fetchBooks: () => void
+    remove(book: Book): void,
+    edit(book: Book): void,
+    create(book: Book): void,
+    fetch(): void,
 }
 
 interface ProviderProps {
@@ -29,11 +25,11 @@ interface ProviderProps {
 function Provider({children}: ProviderProps) {
     const [books, setBooks] = useState((): Book[] => [])
 
-    const fetchBooks = async () => {
+    const fetch = async () => {
         await axios.get('http://localhost:3001/books').then(response => setBooks(response.data))
     }
 
-    const createBook = async (book: Book) => {
+    const create = async (book: Book) => {
         const response = await axios.post('http://localhost:3001/books', {...book}).then(b => {
             return b
         })
@@ -41,16 +37,16 @@ function Provider({children}: ProviderProps) {
         setBooks([...books, response.data])
     }
 
-    const deleteById = async (id?: number) => {
+    const remove = async (book: Book) => {
 
-        await axios.delete(`http://localhost:3001/books/${id}`)
+        await axios.delete(`http://localhost:3001/books/${book.id}`)
 
-        setBooks(books.filter((book) => {
-            return book.id !== id
+        setBooks(books.filter((b) => {
+            return b.id !== book.id
         }))
     }
 
-    const editById = async (updatedBook: Book) => {
+    const edit = async (updatedBook: Book) => {
 
         const response = await axios.put(`http://localhost:3001/books/${updatedBook.id}`,
             {...updatedBook}
@@ -67,24 +63,14 @@ function Provider({children}: ProviderProps) {
         setBooks(updatedBooks)
     }
 
-    const defaultBooks: BooksContextType = {
-        books: books,
-        onDelete: (id: number) =>{
-            return deleteById(id)
-        },
-        onEdit: (book) => {
-            return editById(book)
-        },
-        onCreate: (book: Book) => {
-            return createBook(book)
-        },
-        fetchBooks: () => {
-            return fetchBooks()
-        }
-    };
-
     return (
-        <BooksContext.Provider value={defaultBooks}>
+        <BooksContext.Provider value={{
+            books,
+            remove,
+            edit,
+            create,
+            fetch
+        }}>
             {children}
         </BooksContext.Provider>
     )

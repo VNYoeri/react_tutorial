@@ -9,17 +9,15 @@ interface BookShowProps {
 
 function BookShow({book}: BookShowProps) {
     const [showEdit, toggleEdit] = useState(false);
-    const {onDelete, onEdit} = useContext(BooksContext)
+    const {remove, edit} = useContext(BooksContext)
 
-    const deleteBook = () => {
-        if (book?.id != null) {
-            onDelete(book.id)
-        }
+    const removeBook = () => {
+        remove(book)
     }
 
     const updateBook = (book: Book) => {
         toggleEdit(!showEdit)
-        onEdit(book)
+        edit(book)
     }
 
     const editBook = () => {
@@ -34,7 +32,7 @@ function BookShow({book}: BookShowProps) {
     return (
         <div className='book-show'>
             <div className='actions'>
-                <button className='delete' onClick={deleteBook}/>
+                <button className='delete' onClick={removeBook}/>
                 <button className='edit' onClick={editBook}/>
             </div>
             <img src={`https://picsum.photos/seed/${book.id}/300/200`} alt={book.title}/>

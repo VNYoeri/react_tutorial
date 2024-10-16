@@ -3,14 +3,14 @@ import BooksContext from "../context/books";
 
 
 function BookCreate() {
-    const {onCreate} = useContext(BooksContext);
+    const {create} = useContext(BooksContext);
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
 
     const addBook = (event: FormEvent) => {
         event.preventDefault();
         console.log('received event', event);
-        onCreate({title, author});
+        create({title, author});
         setTitle('');
         setAuthor('');
     }
