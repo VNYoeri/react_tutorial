@@ -33,9 +33,9 @@ interface ProviderProps {
 function Provider({children}: ProviderProps) {
     const [books, setBooks] = useState((): Book[] => [])
 
-    const fetch = async () => {
+    const fetch = useCallback(async () => {
         await axios.get('http://localhost:3001/books').then(response => setBooks(response.data))
-    }
+    },  [])
 
     const create = async (book: Book) => {
         const response = await axios.post('http://localhost:3001/books', {...book}).then(b => {
@@ -79,7 +79,7 @@ function Provider({children}: ProviderProps) {
             remove,
             edit,
             create,
-            fetch: useCallback(fetch, [])
+            fetch
         }}>
             {children}
         </BooksContext.Provider>
