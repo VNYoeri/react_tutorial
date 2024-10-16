@@ -9,7 +9,6 @@ function BookCreate() {
 
     const addBook = (event: FormEvent) => {
         event.preventDefault();
-        console.log('received event', event);
         create({title, author});
         setTitle('');
         setAuthor('');
@@ -17,11 +16,9 @@ function BookCreate() {
 
 
     const updateTitle = (event: ChangeEvent<HTMLInputElement>) => {
-        console.log('received event', event);
         setTitle(event.target.value);
     }
     const updateAuthor = (event: ChangeEvent<HTMLInputElement>) => {
-        console.log('received event', event);
         setAuthor(event.target.value);
     }
 
