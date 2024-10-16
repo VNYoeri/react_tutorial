@@ -1,4 +1,4 @@
-import {createContext, ReactNode, useState} from "react";
+import {createContext, ReactNode, useCallback, useState} from "react";
 import {Book} from "../domain/Book";
 import axios from "axios";
 
@@ -71,13 +71,15 @@ function Provider({children}: ProviderProps) {
         setBooks(updatedBooks)
     }
 
+
+
     return (
         <BooksContext.Provider value={{
             books,
             remove,
             edit,
             create,
-            fetch
+            fetch: useCallback(fetch, [])
         }}>
             {children}
         </BooksContext.Provider>
