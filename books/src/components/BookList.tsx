@@ -6,7 +6,7 @@ import BooksContext from "../context/books";
 function BookList() {
     const {books} = useContext(BooksContext)
 
-    const overview = books?.map(b => <BookShow key={b.id} book={b}/>)
+    const overview = books?.map(book => <BookShow key={book.id} book={book}/>)
 
     return (
         <div className='book-list'>
