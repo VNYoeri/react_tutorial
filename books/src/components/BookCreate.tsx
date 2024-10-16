@@ -1,18 +1,16 @@
-import {ChangeEvent, FormEvent, useState} from "react";
-import {Book} from "../domain/Book";
+import {ChangeEvent, FormEvent, useContext, useState} from "react";
+import BooksContext from "../context/books";
 
-interface BookCreateProps {
-    onCreate: (book: Book) => void
-}
 
-function BookCreate({onCreate}: BookCreateProps) {
+function BookCreate() {
+    const {onCreate} = useContext(BooksContext);
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
 
     const addBook = (event: FormEvent) => {
         event.preventDefault();
         console.log('received event', event);
-        onCreate({ title, author });
+        onCreate({title, author});
         setTitle('');
         setAuthor('');
     }

@@ -1,19 +1,20 @@
 import {Book} from "../domain/Book";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import BookEdit from "./BookEdit";
+import BooksContext from "../context/books";
 
 interface BookShowProps {
-    book: Book,
-    onDelete: ((id?: number) => void)
-    onEdit: (book: Book) => void
+    book: Book
 }
 
-function BookShow({book, onDelete, onEdit}: BookShowProps) {
+function BookShow({book}: BookShowProps) {
     const [showEdit, toggleEdit] = useState(false);
-
+    const {onDelete, onEdit} = useContext(BooksContext)
 
     const deleteBook = () => {
-        onDelete(book?.id)
+        if (book?.id != null) {
+            onDelete(book.id)
+        }
     }
 
     const updateBook = (book: Book) => {
