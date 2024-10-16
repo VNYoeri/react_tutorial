@@ -1,6 +1,6 @@
 import {Book} from "../domain/Book";
-import {ChangeEvent, FormEvent, useContext, useState} from "react";
-import BooksContext from "../context/books";
+import {ChangeEvent, FormEvent, useState} from "react";
+import useBooksContext from "../hooks/use-books-context";
 
 interface BookEditProps {
     book: Book,
@@ -9,7 +9,7 @@ interface BookEditProps {
 
 function BookEdit({book, onSubmit}: BookEditProps) {
     const [title, setTitle] = useState(book.title);
-    const { edit } = useContext(BooksContext)
+    const {edit} = useBooksContext();
 
     const updateTitle = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value)

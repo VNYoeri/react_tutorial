@@ -4,17 +4,25 @@ import axios from "axios";
 
 const BooksContext = createContext<BooksContextType>({
     books: [],
-    create(): void {},
-    edit(): void {},
-    fetch(): void {},
-    remove(): void {}
+    create(): void {
+    },
+    edit(): void {
+    },
+    fetch(): void {
+    },
+    remove(): void {
+    }
 })
 
 interface BooksContextType {
     books: Book[],
+
     remove(book: Book): void,
+
     edit(book: Book): void,
+
     create(book: Book): void,
+
     fetch(): void,
 }
 

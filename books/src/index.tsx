@@ -4,12 +4,12 @@ import App from './App';
 import {Provider} from "./context/books";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-      <Provider>
-          <App />
-      </Provider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Provider>
+            <App/>
+        </Provider>
+    </React.StrictMode>
 );

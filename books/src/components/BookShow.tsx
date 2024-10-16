@@ -1,7 +1,7 @@
 import {Book} from "../domain/Book";
-import {useContext, useState} from "react";
+import {useState} from "react";
 import BookEdit from "./BookEdit";
-import BooksContext from "../context/books";
+import useBooksContext from "../hooks/use-books-context";
 
 interface BookShowProps {
     book: Book
@@ -9,7 +9,7 @@ interface BookShowProps {
 
 function BookShow({book}: BookShowProps) {
     const [showEdit, toggleEdit] = useState(false);
-    const {remove} = useContext(BooksContext)
+    const {remove} = useBooksContext();
 
     const removeBook = () => {
         remove(book)
