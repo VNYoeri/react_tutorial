@@ -14,12 +14,13 @@ interface AccordionProps {
 function Accordion({items}: AccordionProps) {
     const [expandedIndex, setExpandedIndex] = useState(-1)
 
-    function expand(index: number) {
-        if (expandedIndex === index) {
-            setExpandedIndex(-1);
-        } else {
-            setExpandedIndex(index);
-        }
+    const expand = (index: number) => {
+        setExpandedIndex((current) => {
+            if (current === index) {
+                return -1
+            }
+            return index;
+        })
     }
 
     const renderedItems = items.map((item, index) => {
