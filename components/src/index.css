@@ -6,3 +6,9 @@
 button > svg {
     margin-right: 5px;
 }
+
+div > span {
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+}
