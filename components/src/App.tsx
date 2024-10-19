@@ -11,7 +11,7 @@ function App() {
                 </Button>
             </div>
             <div>
-                <Button outline type={ButtonType.SECONDARY}>
+                <Button outline type={ButtonType.SECONDARY} className='mb-5'>
                     <GoDownload /> SECONDARY - not rounded - outlined
                 </Button>
             </div>

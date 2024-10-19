@@ -10,7 +10,7 @@ interface ButtonProps {
 
 function Button({rounded, outline, type, children, ...rest}: ButtonProps) {
 
-     return <button {...rest} className={`${buttonStyleFor(type, rounded, outline)}`}>
+     return <button {...rest} className={`${buttonStyleFor(type, rounded, outline, rest.className)}`}>
         {children}
     </button>
 }
@@ -25,24 +25,25 @@ export const enum ButtonType {
     DANGER
 }
 
-function buttonStyleFor(type: ButtonType, rounded?: boolean, outlined?: boolean): string {
+function buttonStyleFor(type: ButtonType, rounded?: boolean, outlined?: boolean, predefinedStyling?: string): string {
     switch (type) {
         case ButtonType.PRIMARY:
-            return new PrimaryButton(rounded, outlined).finalStyle()
+            return new PrimaryButton(predefinedStyling, rounded, outlined).finalStyle()
         case ButtonType.SECONDARY:
-            return new SecondaryButton(rounded, outlined).finalStyle()
+            return new SecondaryButton(predefinedStyling, rounded, outlined).finalStyle()
         case ButtonType.SUCCESS:
-            return new SuccessButton(rounded, outlined).finalStyle()
+            return new SuccessButton(predefinedStyling, rounded, outlined).finalStyle()
         case ButtonType.DANGER:
-            return new DangerButton(rounded, outlined).finalStyle()
+            return new DangerButton(predefinedStyling, rounded, outlined).finalStyle()
         case ButtonType.WARNING:
-            return new WarningButton(rounded, outlined).finalStyle()
+            return new WarningButton(predefinedStyling, rounded, outlined).finalStyle()
     }
 }
 
 abstract class ButtonClassStyle {
     rounded;
     outlined;
+    additionalStyling;
     defaultStyle = 'flex items-center px-3 py-1.5 border'
     textColor = 'text-white';
     outlineBgStyle = 'bg-white';
@@ -50,9 +51,10 @@ abstract class ButtonClassStyle {
     abstract outlineTextColor: string;
     abstract borderColor: string;
 
-    constructor(rounded: boolean = false, outlined: boolean = false) {
+    constructor(additionalStyling ?: string, rounded: boolean = false, outlined: boolean = false) {
         this.rounded = rounded;
         this.outlined = outlined;
+        this.additionalStyling = additionalStyling;
     }
 
     borderRadius() {
@@ -61,10 +63,10 @@ abstract class ButtonClassStyle {
 
     finalStyle(): string {
         if (this.outlined) {
-            return [this.defaultStyle, this.borderColor, this.outlineTextColor, this.outlineBgStyle, this.borderRadius()].join(' ')
+            return [this.additionalStyling, this.defaultStyle, this.borderColor, this.outlineTextColor, this.outlineBgStyle, this.borderRadius()].join(' ')
         }
 
-        return [this.defaultStyle, this.textColor, this.borderColor, this.bgColor, this.borderRadius()].join(' ')
+        return [this.additionalStyling, this.defaultStyle, this.textColor, this.borderColor, this.bgColor, this.borderRadius()].join(' ')
     }
 }
 
