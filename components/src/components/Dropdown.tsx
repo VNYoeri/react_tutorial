@@ -1,4 +1,4 @@
-import {Key, useState} from 'react';
+import {Key, useEffect, useRef, useState} from 'react';
 import {GoChevronDown, GoChevronLeft} from 'react-icons/go';
 import Panel from './Panel';
 
@@ -10,6 +10,21 @@ interface DropdownProps {
 
 function Dropdown({options, value, onChange}: DropdownProps) {
     const [open, setOpen] = useState(false)
+    const divEl= useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const closeDropDown = (event: any) => {
+            if(!divEl?.current?.contains(event.target)) {
+                setOpen(false)
+            }
+        };
+
+        document.addEventListener('click', closeDropDown, true);
+
+        return () => {
+            document.removeEventListener('click', closeDropDown);
+        };
+    }, []);
 
     const select = (option: DropdownOption) => {
         toggle();
@@ -33,7 +48,7 @@ function Dropdown({options, value, onChange}: DropdownProps) {
     let icon = <span className='text-lg'>{open ? <GoChevronLeft/> : <GoChevronDown/>}</span>;
 
     return (
-        <div className='w-48 relative'>
+        <div className='w-48 relative' ref={divEl}>
             <Panel onClick={toggle} className='flex justify-between items-center cursor-pointer'>
                 {value?.label || 'Select...'} {icon}
             </Panel>
