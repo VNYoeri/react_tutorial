@@ -2,7 +2,7 @@ import {ReactNode} from 'react';
 
 interface ProviderProps {
     children: ReactNode,
-    className: string,
+    className?: string,
     [x:string]: any
 }
 
