@@ -1,28 +1,42 @@
 interface TableProps {
-    data: any[]
+    data: any[],
+    columns: TableConfig[],
+    keyFn: (fn: any) => any
 }
 
-function Table({data}: TableProps) {
+interface TableConfig {
+    label: string,
+    render: ({}: any) => any,
+    sort?: any
+}
 
-    let renderedRows = data.map(fruit => {
-        return <tr key={fruit.name} className='border-b'>
-            <td className='p-3'>{fruit.name}</td>
-            <td className='p-3'><div className={`p-3 m-2 ${fruit.color}`} /></td>
-            <td className='p-3'>{fruit.score}</td>
+function Table({data, columns, keyFn}: TableProps) {
+
+    const headers = columns.map(column => {
+        return <th key={column.label}>{column.label}</th>
+    })
+
+    const rows = data.map(rowData => {
+        const cellContents = columns.map(column => {
+            return <td key={column.label} className='p-2'>{column.render(rowData)} </td>
+        })
+
+        return <tr key={keyFn(rowData)} className='border-b'>
+            {cellContents}
         </tr>
     });
+
     return <table className='table-auto border-spacing-2'>
         <thead>
-            <tr className='border-b-2'>
-                <th>Fruits</th>
-                <th>Color</th>
-                <th>Score</th>
-            </tr>
+        <tr className='border-b-2'>
+            {headers}
+        </tr>
         </thead>
         <tbody>
-        {renderedRows}
+        {rows}
         </tbody>
     </table>
 }
 
+export type {TableConfig};
 export default Table
