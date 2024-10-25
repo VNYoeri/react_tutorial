@@ -29,16 +29,43 @@ function TablePage() {
     }
 
     const vehicles = [
-        {name: 'Truck', price: 15000, discount: .1, img: 'truck.png'},
-        {name: 'Car', price: 15000, discount: .15, img: 'car.png'},
-        {name: 'Boat', price: 15000, discount: .02, img: 'boat.png'},
+        {
+            name: 'Truck',
+            price: 15000,
+            discount: .1,
+            img: 'truck.png'
+        },
+        {
+            name: 'Car',
+            price: 15000,
+            discount: .15,
+            img: 'car.png'
+        },
+        {
+            name: 'Boat',
+            price: 15000,
+            discount: .02,
+            img: 'boat.png'
+        }
     ]
 
-    const vehicleConfig : TableConfig[] = [
-        {label: 'Vehicle', render: (vehicle) => vehicle.name},
-        {label: 'Price', render: (vehicle) => vehicle.price},
-        {label: 'Discounted price', render: (vehicle) => {return vehicle.price * (1 - vehicle.discount)}},
-        {label: 'Image', render: (vehicle) => vehicle.img}
+    const vehicleConfig: TableConfig[] = [
+        {
+            label: 'Vehicle',
+            render: (vehicle) => vehicle.name
+        },
+        {
+            label: 'Price',
+            render: (vehicle) => vehicle.price
+        },
+        {
+            label: 'Discounted price',
+            render: (vehicle) => vehicle.price * (1 - vehicle.discount)
+        },
+        {
+            label: 'Image',
+            render: (vehicle) => vehicle.img
+        }
     ]
 
     const vehicleKeyFn = (vehicle: any) => {
