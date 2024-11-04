@@ -7,8 +7,8 @@ function TablePage() {
     const vehicles = new Vehicles()
 
     return (<div>
-        <SortableTable data={fruits.data()} columns={fruits.config()} keyFn={fruits.keyFn()}/>
-        <Table data={vehicles.data()} columns={vehicles.config()} keyFn={vehicles.keyFn()}/>
+        <SortableTable data={fruits.data()} config={fruits.config()} keyFn={fruits.keyFn()}/>
+        <Table data={vehicles.data()} config={vehicles.config()} keyFn={vehicles.keyFn()}/>
     </div>)
 }
 

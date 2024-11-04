@@ -2,7 +2,7 @@ import {Fragment} from 'react';
 
 interface TableProps {
     data: any[],
-    columns: ColumnConfiguration[],
+    config: ColumnConfiguration[],
     keyFn: (fn: any) => any
 }
 
@@ -13,9 +13,9 @@ interface ColumnConfiguration {
     sortValue?: ({}: any) => any
 }
 
-function Table({data, columns, keyFn}: TableProps) {
+function Table({data, config, keyFn}: TableProps) {
 
-    const headers = columns.map(column => {
+    const headers = config.map(column => {
         if (column.header) {
             return <Fragment key={column.label}>{column.header}</Fragment>
         }
@@ -23,7 +23,7 @@ function Table({data, columns, keyFn}: TableProps) {
     })
 
     const rows = data.map(rowData => {
-        const cellContents = columns.map(column => {
+        const cellContents = config.map(column => {
             return <td key={column.label} className='p-2'>{column.render(rowData)}</td>
         });
 
