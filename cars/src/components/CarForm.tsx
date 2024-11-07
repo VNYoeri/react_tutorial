@@ -1,12 +1,11 @@
-import {save, AppDispatch, changeCost, changeName, RootState} from '../store';
-import {useDispatch, useSelector} from 'react-redux';
-import {Car} from '../domain/Car';
+import {changeCost, changeName, save} from '../store';
 import {ChangeEvent, FormEvent} from 'react';
+import {useAppDispatch, useAppSelector} from '../hooks/store';
 
 function CarForm() {
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
-    const car: Car = useSelector((state: RootState) => {
+    const car = useAppSelector((state) => {
         return state.form;
     })
 
@@ -26,16 +25,16 @@ function CarForm() {
     return <div className='car-form panel'>
         <h4 className='subtitle is-3'>Add Car</h4>
         <form onSubmit={handleSubmit}>
-        <div className='field-group'>
-            <div className='field'>
-                <label className='label'>Name</label>
-                <input value={car?.name} onChange={nameChanged} type='text' id='carName' className='input is-expanded'/>
+            <div className='field-group'>
+                <div className='field'>
+                    <label className='label'>Name</label>
+                    <input value={car?.name} onChange={nameChanged} type='text' id='carName' className='input is-expanded'/>
+                </div>
+                <div className='field'>
+                    <label className='label'>Cost</label>
+                    <input value={car?.cost || ''} onChange={costChanged} type='number' id='carCost' className='input is-expanded'/>
+                </div>
             </div>
-            <div className='field'>
-                <label className='label'>Cost</label>
-                <input value={car?.cost || ''} onChange={costChanged} type='number' id='carCost'  className='input is-expanded'/>
-            </div>
-        </div>
             <div className='field'>
                 <button className='button is-link' type='submit'>Submit</button>
             </div>

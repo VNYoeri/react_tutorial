@@ -1,6 +1,6 @@
 import {Car} from './Car';
 
 export interface Cars {
-    cars: Car[],
+    data: Car[],
     searchTerm: string
 }

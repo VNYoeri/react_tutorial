@@ -1,10 +1,10 @@
-import {useDispatch, useSelector} from 'react-redux';
-import {AppDispatch, changeSearchTerm, RootState} from '../store';
+import {changeSearchTerm} from '../store';
 import {ChangeEvent} from 'react';
+import {useAppDispatch, useAppSelector} from '../hooks/store';
 
 function CarSearch() {
-    const dispatch: AppDispatch = useDispatch();
-    const searchTerm = useSelector((state: RootState) => {
+    const dispatch = useAppDispatch();
+    const searchTerm = useAppSelector((state) => {
         return state.cars.searchTerm;
     })
 

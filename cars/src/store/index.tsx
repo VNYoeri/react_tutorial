@@ -1,7 +1,7 @@
-import {removeCar, changeSearchTerm, carsReducer} from './slices/carsSlice';
-import {changeName, changeCost, formReducer} from './slices/formSlice';
+import {carsReducer, changeSearchTerm, removeCar} from './slices/carsSlice';
+import {changeCost, changeName, formReducer} from './slices/formSlice';
 import {configureStore} from '@reduxjs/toolkit';
-import { save } from './actions';
+import {save} from './actions';
 
 const store = configureStore({
     reducer: {
@@ -10,8 +10,7 @@ const store = configureStore({
     }
 })
 
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
-
-export { store, removeCar, changeName, changeCost, changeSearchTerm, save };
+export {store, removeCar, changeName, changeCost, changeSearchTerm, save};

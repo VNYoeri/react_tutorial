@@ -7,20 +7,20 @@ import {save} from '../actions';
 const carsSlice = createSlice({
     name: "cars",
     initialState: {
-        cars: [],
+        data: [],
         searchTerm: ''
     } as Cars,
     reducers: {
         removeCar(state, action: { payload: Car, type: string }) {
-            return {...state, cars: state.cars.filter(c => c.id !== action.payload.id)};
+            return {...state, data: state.data.filter(c => c.id !== action.payload.id)};
         },
-        changeSearchTerm(state, action: {payload: string, type: string}) {
+        changeSearchTerm(state, action: { payload: string, type: string }) {
             return {...state, searchTerm: action.payload}
         }
     },
     extraReducers(builder) {
         builder.addCase(save, (state, action: { payload: Car, type: string }) => {
-            return {...state, cars: [...state.cars, {...action.payload, id: nanoid()}]};
+            return {...state, data: [...state.data, {...action.payload, id: nanoid()}]};
         })
     }
 });

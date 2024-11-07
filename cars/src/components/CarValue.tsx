@@ -1,9 +1,8 @@
-import {useSelector} from 'react-redux';
-import {RootState} from '../store';
+import {useAppSelector} from '../hooks/store';
 
 function CarValue() {
-    const carTotalCost: number = useSelector((state: RootState) => {
-        return state.cars.cars.filter(car => car.name.includes(state.cars.searchTerm)).map(car => car.cost).reduce((x, y) => x + y, 0);
+    const carTotalCost: number = useAppSelector((state) => {
+        return state.cars?.data?.filter(car => car.name.includes(state.cars.searchTerm)).map(car => car.cost).reduce((x, y) => x + y, 0);
     })
 
     return <div className='car-value'>
