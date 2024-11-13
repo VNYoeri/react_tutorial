@@ -1,11 +1,12 @@
 import React from 'react';
+import UsersList from "./components/UsersList";
 
 function App() {
-  return (
-    <div className='flex justify-center'>
-        <div className='text-xl'>Title</div>
-    </div>
-  );
+    return (
+        <div className='container mx-auto'>
+            <UsersList />
+        </div>
+    );
 }
 
 export default App;
